@@ -6,7 +6,7 @@ def get_html(url):
     try:
         r = requests.get(url, timeout = 30)
         r.raise_for_status()
-        r.encoding = r.apparent_encoding()
+        r.encoding = 'utf-8'#r.apparent_encoding()
         return r.text
 
     except:
@@ -48,7 +48,7 @@ def Out2File(dict):
     write to local file TTBT.txt
     :param dict: comments
     """
-    with open('TTBT.txt', 'a+', encoding='utf-8') as f:
+    with codecs.open('TTBT.txt', 'a+', encoding='utf-8') as f:
         for comment in dict:
             f.write('标题： {} \t 链接：{} \t 发帖人：{} \t 发帖时间：{} \t 回复数量： {} \n'.format(
                 comment['title'], comment['link'], comment['name'], comment['time'], comment['replyNum']))
@@ -64,6 +64,7 @@ def main(base_url, deep):
 
     for i in url_list:
         content = get_content(i)
+        # print(content)
         Out2File(content)
     print('所有的信息都已经保存完毕！')
 
