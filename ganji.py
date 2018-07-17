@@ -50,6 +50,14 @@ def main(base_url, num):
 base_url =    'https://3g.ganji.com/bj_shoucangpin/3444906820x?pos=1&page=3&tg=&url=shoucangpin&pageSize=10&deal_type=1&agent=1'
 #'https://3g.ganji.com/bj_shoucangpin/'
 
+https://3g.ganji.com/bj_shoucangpin/?ifid=v3_secondmarket_categorylist_shoucangpin
+https://3g.ganji.com/bj_shoucangpin/?page=2&url=shoucangpin&pageSize=10&deal_type=1&agent=1&ifid=gj3g_list_next_wu
+https://3g.ganji.com/bj_shoucangpin/?page=3&url=shoucangpin&pageSize=10&deal_type=1&agent=1&ifid=gj3g_list_next_wu
+https://3g.ganji.com/bj_shoucangpin/?page=4&url=shoucangpin&pageSize=10&deal_type=1&agent=1&ifid=gj3g_list_next_wu
+
+https://3g.ganji.com/bj_shoucangpin/2897245888x?pos=9&page=1&tg=&url=shoucangpin&pageSize=10&deal_type=1&agent=1
+/bj_shoucangpin/2897245888x?pos=9&amp;page=1&amp;tg=&amp;url=shoucangpin&amp;pageSize=10&amp;deal_type=1&amp;agent=1
+
 if __name__ == '__main__':
     contents = main(base_url,3)
     print(contents)

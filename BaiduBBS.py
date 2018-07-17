@@ -43,6 +43,25 @@ def get_content(url):
 
     return comments
 
+def get_comments(url):
+    """
+    >>> get_comments('https://tieba.baidu.com/p/4243062672?fr=ala0&pstaala=1&tpl=5&fid=8519820&isgod=0&red_tag=0519724203')
+
+    """
+    comments = []
+
+    html = get_html(url)
+    soup = BeautifulSoup(html, 'lxml')
+
+    cons = soup.find_all('div', attrs={'class':'d_post_content j_d_post_content '})
+    for con in cons:
+        comments.append(con.text.strip())
+
+    return comments
+
+
+
+
 def Out2File(dict):
     """
     write to local file TTBT.txt
@@ -62,15 +81,33 @@ def main(base_url, deep):
         url_list.append(base_url + '&pn=' + str(50 * i))
     print('所有的网页已经下载到本地！ 开始筛选信息')
 
+    words = []
+    links = []
     for i in url_list:
         content = get_content(i)
-        # print(content)
-        Out2File(content)
+        #Out2File(content)
+
+    for i in content:
+        words.append(['title'])
+        links.append(i['link'])
+
+    with codecs.open('JDAuction.txt', 'a+', encoding='utf-8') as f:
+        for i in links:
+            content2 = get_comments(i)
+         #   print(content2)
+            f.write('{}\n'.format(content2))
+
+
+    #print(words)
     print('所有的信息都已经保存完毕！')
 
-base_url = 'http://tieba.baidu.com/f?kw=%E7%94%9F%E6%B4%BB%E5%A4%A7%E7%88%86%E7%82%B8&ie=utf-8'
+#生活大爆炸
+#base_url = 'http://tieba.baidu.com/f?kw=%E7%94%9F%E6%B4%BB%E5%A4%A7%E7%88%86%E7%82%B8&ie=utf-8'
+
+#京东拍卖
+base_url = 'https://tieba.baidu.com/f?kw=%BE%A9%B6%AB%C5%C4%C2%F4&fr=ala0&tpl=5'
 # 设置需要爬取的页码数量
-deep = 3
+deep = 1
 
 if __name__ == '__main__':
     main(base_url, deep)
